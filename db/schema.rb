@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_091419) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "clients_id"
     t.datetime "created_at"
     t.datetime "shipped_at"
     t.string "status", limit: 20
+    t.bigint "clients_id"
     t.index ["clients_id"], name: "index_orders_on_clients_id"
   end
 
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_091419) do
     t.string "name", limit: 50
     t.decimal "price", precision: 10, scale: 2
     t.string "description"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_products_on_category_id"
+    t.bigint "categories_id"
+    t.index ["categories_id"], name: "index_products_on_categories_id"
   end
 
+  add_foreign_key "orders", "clients", column: "clients_id"
+  add_foreign_key "products", "categories", column: "categories_id"
 end

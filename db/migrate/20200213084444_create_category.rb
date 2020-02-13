@@ -5,11 +5,7 @@ class CreateCategory < ActiveRecord::Migration[6.0]
       t.string :description, limit: 255
     end
 
-    change_table :products do |t|
-      t.references :category
-    end
-
-    add_foreign_key :categories, :products
+    add_reference(:products, :categories, foreign_key: true)
 
   end
 end
