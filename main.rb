@@ -16,8 +16,16 @@ if false
   client = Client.create(firstname: "Bob", lastname: "lennon")
 end
 
+if false
+  client = Client.last
+  order = Order.new
+  order.client = client
+  order.save
+end
+
 if true
   Category.all.each { |category| puts "#{category} (#{category.name}), #{category.products.count} products" }
   Product.all.each { |product| puts "#{product} (#{product.category}, #{product.price})" }
-  Client.all.each { |client| puts "#{client}" }
+  Client.all.each { |client| puts "#{client} (#{client.orders.count} orders)" }
+  Order.all.each { |order| puts "#{order}" }
 end
