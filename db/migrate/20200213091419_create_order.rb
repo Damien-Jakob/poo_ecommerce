@@ -7,7 +7,7 @@ class CreateOrder < ActiveRecord::Migration[6.0]
     end
 
     # order has a client_id foreign key
-    add_reference(:orders, :clients, foreign_key: true)
+    add_reference(:orders, :client, foreign_key: true)
 
   end
 end
