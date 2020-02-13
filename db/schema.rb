@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_091419) do
+ActiveRecord::Schema.define(version: 2020_02_13_131507) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 50
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2020_02_13_091419) do
     t.index ["clients_id"], name: "index_orders_on_clients_id"
   end
 
+  create_table "orders_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "price", precision: 10, scale: 2
+    t.bigint "orders_id"
+    t.bigint "products_id"
+    t.index ["orders_id"], name: "index_orders_products_on_orders_id"
+    t.index ["products_id"], name: "index_orders_products_on_products_id"
+  end
+
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 50
     t.decimal "price", precision: 10, scale: 2
@@ -39,5 +48,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_091419) do
   end
 
   add_foreign_key "orders", "clients", column: "clients_id"
+  add_foreign_key "orders_products", "orders", column: "orders_id"
+  add_foreign_key "orders_products", "products", column: "products_id"
   add_foreign_key "products", "categories", column: "categories_id"
 end
