@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_131507) do
+ActiveRecord::Schema.define(version: 2020_02_13_140443) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 50
@@ -22,33 +22,33 @@ ActiveRecord::Schema.define(version: 2020_02_13_131507) do
     t.string "lastname", limit: 50
   end
 
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "price", precision: 10, scale: 2
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "shipped_at"
     t.string "status", limit: 20
-    t.bigint "clients_id"
-    t.index ["clients_id"], name: "index_orders_on_clients_id"
-  end
-
-  create_table "orders_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "quantity"
-    t.decimal "price", precision: 10, scale: 2
-    t.bigint "orders_id"
-    t.bigint "products_id"
-    t.index ["orders_id"], name: "index_orders_products_on_orders_id"
-    t.index ["products_id"], name: "index_orders_products_on_products_id"
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 50
     t.decimal "price", precision: 10, scale: 2
     t.string "description"
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_products_on_categories_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  add_foreign_key "orders", "clients", column: "clients_id"
-  add_foreign_key "orders_products", "orders", column: "orders_id"
-  add_foreign_key "orders_products", "products", column: "products_id"
-  add_foreign_key "products", "categories", column: "categories_id"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "products", "categories"
 end
