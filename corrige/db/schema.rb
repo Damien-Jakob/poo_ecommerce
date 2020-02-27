@@ -10,28 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_140443) do
+ActiveRecord::Schema.define(version: 2019_02_21_104724) do
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "description"
   end
 
-  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "firstname", limit: 50
-    t.string "lastname", limit: 50
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "firstname", limit: 60
+    t.string "lastname", limit: 60
   end
 
-  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "item_price", precision: 10, scale: 2
+    t.decimal "item_price", precision: 8, scale: 2
     t.bigint "order_id"
     t.bigint "product_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "shipped_at"
     t.string "status", limit: 20
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_140443) do
     t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
-    t.decimal "price", precision: 10, scale: 2
-    t.string "description"
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.string "description", limit: 300
     t.bigint "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
