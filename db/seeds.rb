@@ -1,9 +1,12 @@
+# rake db:seed
+
 require_relative '../models/category'
 require_relative '../models/product'
 require_relative '../models/client'
 require_relative '../models/order'
+require_relative '../models/order_item'
 
-if true
+if false
   winter = Category.create(name: "winter", description: "cold")
   summer = Category.create(name: "summer", description: "hot")
 
@@ -17,4 +20,5 @@ end
 if true
   client = Client.last
   order = client.orders.create
+  Product.all.each { |product| order.order_items.create(product: product, quantity: 101) }
 end
