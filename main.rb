@@ -33,27 +33,38 @@ if false
   OrderItem.bulk(bulk_limit).map(&:product).each { |product| puts "#{product} (#{product.id})" }
 end
 
+# Exercise 4
+
 # Test client validation
 if false
-  Client.create(firstname: "Bob", lastname: "Lennon")
-  Client.create(firstname: "B", lastname: "Lennon")
-  Client.create(firstname: "Bob", lastname: "L")
-  Client.create(lastname: "Lennon")
-  Client.create(firstname: "Bob")
+  puts Client.new(firstname: "Bob", lastname: "Lennon").valid?
+  puts Client.new(firstname: "B", lastname: "Lennon").valid?
+  puts Client.new(firstname: "Bob", lastname: "L").valid?
+  puts Client.new(lastname: "Lennon").valid?
+  puts Client.new(firstname: "Bob").valid?
 
-  Client.all.each { |client| puts client }
+  # Client.all.each { |client| puts client }
 end
 
 # Test order creation
-if true
+if false
   client = Client.last
   order = client.orders.new
-  puts order.order_items.count
-  puts order.valid?
-  # Cannot create an order_item for order if order is not saved
-  # But cannot save order if it has no order_item
-  
-  # order_item = order.order_items.create
-  puts order.order_items.count
-  puts order.valid?
+  puts "items count : #{order.order_items.count}"
+  puts "items size : #{order.order_items.size}"
+  puts "valid? : #{order.valid?}"
+
+  order.order_items.build(quantity: 1, product: Product.first)
+  puts "added an order_item"
+  puts "items count : #{order.order_items.count}"
+  puts "items size : #{order.order_items.size}"
+  puts "valid? : #{order.valid?}"
+end
+
+# Ex 5
+if true
+  order = Order.new
+  order.order_items.build(quantity: 1, product: Product.first, item_price: 12.3)
+  order.order_items.build(quantity: 5, product: Product.first, item_price: 14.65)
+  puts order.total_price
 end

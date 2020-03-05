@@ -1,4 +1,9 @@
 class Client < ActiveRecord::Base
+  has_many :orders
+  # use relation :products of :orders
+  has_many :ordered_products, through: :orders, source: :products
+  # has_many :favorite_products
+
   validates :firstname,
             presence: true,
             length: {
@@ -10,11 +15,6 @@ class Client < ActiveRecord::Base
             length: {
                 minimum: 2
             }
-
-  has_many :orders
-  # use relation :products of :orders
-  has_many :ordered_products, through: :orders, source: :products
-  # has_many :favorite_products
 
   def to_s
     "#{firstname} #{lastname}"
