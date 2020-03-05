@@ -1,6 +1,8 @@
 class Order < ActiveRecord::Base
-  # validation : min one order_item
-  validate :contain_item
+  # presence: true for a table -> table must have at least one element
+  validates :order_items, :client,
+            presence: true
+  # validate :contain_item
   validates_associated :order_items
 
   belongs_to :client
@@ -8,7 +10,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_items
 
   def total_price
-    self.order_items.map { |order_item| order_item.price }.sum
+    self.order_items.sum(&:price)
   end
 
   def to_s
@@ -17,6 +19,7 @@ class Order < ActiveRecord::Base
 
   protected
 
+  # obsolete
   def contain_item
     # DO NOT USE COUNT : IS IS 0 AS LONG AS THE ORDER HAS NOT BEEN SAVED
     if order_items.size < 1

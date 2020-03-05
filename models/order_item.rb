@@ -4,10 +4,15 @@ class OrderItem < ActiveRecord::Base
 
   validates :quantity,
             numericality: {
-                greater_than_or_equal_to: 1
+                only_integer: true,
+                greater_than_or_equal_to: 1,
             }
-  validates :product,
+  validates :product, :order,
             presence: true
+  validates :item_price,
+            absence: true
+
+  before_create :initialize_item_price
 
   scope :bulk, -> (quantity = 100) { where("quantity >= ?", quantity) }
 
@@ -17,5 +22,11 @@ class OrderItem < ActiveRecord::Base
 
   def price
     self.quantity * self.item_price
+  end
+
+  protected
+
+  def initialize_item_price
+    self.item_price = self.product.price
   end
 end

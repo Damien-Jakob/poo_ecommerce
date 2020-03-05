@@ -5,15 +5,15 @@ class Client < ActiveRecord::Base
   # has_many :favorite_products
 
   validates :firstname,
-            presence: true,
             length: {
-                minimum: 2
+                minimum: 2,
+                maximum: 50,
             }
 
   validates :lastname,
-            presence: true,
             length: {
-                minimum: 2
+                minimum: 2,
+                maximum: 50,
             }
 
   def to_s

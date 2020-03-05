@@ -54,7 +54,7 @@ if false
   puts "items size : #{order.order_items.size}"
   puts "valid? : #{order.valid?}"
 
-  order.order_items.build(quantity: 1, product: Product.first)
+  order.order_items.new(quantity: 1, product: Product.first)
   puts "added an order_item"
   puts "items count : #{order.order_items.count}"
   puts "items size : #{order.order_items.size}"
@@ -63,8 +63,12 @@ end
 
 # Ex 5
 if true
-  order = Order.new
-  order.order_items.build(quantity: 1, product: Product.first, item_price: 12.3)
-  order.order_items.build(quantity: 5, product: Product.first, item_price: 14.65)
+  client = Client.last
+  order = client.orders.new
+  order.order_items.new(quantity: 1, product: Product.first)
+  order.order_items.new(quantity: 5, product: Product.last)
+  puts order.save
   puts order.total_price
+
+  puts order.order_items.new(quantity: 1, product: Product.first, item_price: 2).valid?
 end
