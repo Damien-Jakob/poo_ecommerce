@@ -66,7 +66,9 @@ if true
   client = Client.last
   order = client.orders.new
   order.order_items.new(quantity: 1, product: Product.first)
-  order.order_items.new(quantity: 5, product: Product.last)
+  order_item = order.order_items.new(quantity: 5, product: Product.last)
+  # before_validation, but not before_save
+  puts order_item.valid?
   puts order.save
   puts order.total_price
 

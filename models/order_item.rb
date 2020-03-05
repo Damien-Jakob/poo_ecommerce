@@ -9,10 +9,8 @@ class OrderItem < ActiveRecord::Base
             }
   validates :product, :order,
             presence: true
-  validates :item_price,
-            absence: true
 
-  before_create :initialize_item_price
+  before_save :initialize_item_price
 
   scope :bulk, -> (quantity = 100) { where("quantity >= ?", quantity) }
 
@@ -21,12 +19,14 @@ class OrderItem < ActiveRecord::Base
   end
 
   def price
-    self.quantity * self.item_price
+    quantity * item_price
   end
 
   protected
 
   def initialize_item_price
-    self.item_price = self.product.price
+    unless item_price
+      self.item_price = product.price
+    end
   end
 end
