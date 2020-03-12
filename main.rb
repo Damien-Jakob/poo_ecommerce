@@ -75,7 +75,7 @@ if false
   puts order.order_items.new(quantity: 1, product: Product.first, item_price: 2).valid?
 end
 
-# Ex 6 -> create IndividualClient < Client, EnterpriseClient < Client
+# Ex 6
 # Test IndividualClient
 if false
   puts IndividualClient.new(firstname: "Bob", lastname: "Lennon").valid?
@@ -101,3 +101,5 @@ end
 if false
   puts Client.all
 end
+
+# Ex 7
