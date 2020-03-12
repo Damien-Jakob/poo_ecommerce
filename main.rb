@@ -103,3 +103,17 @@ if false
 end
 
 # Ex 7
+if true
+  supplier = Supplier.last
+  product1 = supplier.products.new(name: "Pantalons", price: 43.35, description: "Ne les perd pas.")
+  product1.category = Category.find_by name: 'Habits'
+  product2 = supplier.products.new(name: "Echelle", price: 82.50, description: "Attention : fragile")
+  product2.category = Category.find_by name:'Bricolage'
+
+  supplier.save()
+
+  puts supplier
+  puts supplier.products
+  puts supplier.categories
+  puts supplier.categories.count
+end
