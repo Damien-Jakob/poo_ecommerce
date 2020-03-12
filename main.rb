@@ -103,7 +103,7 @@ if false
 end
 
 # Ex 7
-if true
+if false
   supplier = Supplier.last
   product1 = supplier.products.new(name: "Pantalons", price: 43.35, description: "Ne les perd pas.")
   product1.category = Category.find_by name: 'Habits'
