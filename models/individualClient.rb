@@ -1,3 +1,5 @@
+require_relative 'client'
+
 class IndividualClient < Client
   validates :firstname,
             length: {

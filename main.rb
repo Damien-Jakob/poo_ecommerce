@@ -110,7 +110,7 @@ if false
   product2 = supplier.products.new(name: "Echelle", price: 82.50, description: "Attention : fragile")
   product2.category = Category.find_by name:'Bricolage'
 
-  supplier.save()
+  supplier.save
 
   puts supplier
   puts supplier.products

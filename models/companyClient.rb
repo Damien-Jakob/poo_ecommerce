@@ -1,3 +1,5 @@
+require_relative 'client'
+
 class CompanyClient < Client
   validates :name,
             length: {
@@ -6,7 +8,7 @@ class CompanyClient < Client
             }
 
   def to_s
-    "#{name}"
+    name
   end
 
 end
