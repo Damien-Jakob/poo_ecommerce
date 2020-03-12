@@ -26,12 +26,9 @@ ActiveRecord::Schema.define(version: 2020_03_12_082703) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
-    t.string "product_type"
-    t.bigint "product_id"
-    t.string "supplier_type"
-    t.bigint "supplier_id"
-    t.index ["product_type", "product_id"], name: "index_comments_on_product_type_and_product_id"
-    t.index ["supplier_type", "supplier_id"], name: "index_comments_on_supplier_type_and_supplier_id"
+    t.string "subject_type"
+    t.bigint "subject_id"
+    t.index ["subject_type", "subject_id"], name: "index_comments_on_subject_type_and_subject_id"
   end
 
   create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

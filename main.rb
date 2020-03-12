@@ -119,3 +119,16 @@ if false
 end
 
 # Ex 8
+if false
+  product = Product.last
+  product.comments << Comment.new(content: "Génial")
+  product.comments << Comment.new(content: "NUL")
+  product.save
+  puts product.comments
+
+  supplier = Supplier.last
+  supplier.comments << Comment.new(content: "Click here to meet hot girls in your region.")
+  supplier.comments << Comment.new(content: "The cake is a lie")
+  supplier.save
+  puts supplier.comments
+end

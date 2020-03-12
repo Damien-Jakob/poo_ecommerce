@@ -4,7 +4,6 @@ class CreateComment < ActiveRecord::Migration[6.0]
       t.string :content
     end
 
-    add_reference :comments, :product, polymorphic: true
-    add_reference :comments, :supplier, polymorphic: true
+    add_reference :comments, :subject, polymorphic: true
   end
 end
