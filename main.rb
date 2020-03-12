@@ -76,8 +76,8 @@ if false
 end
 
 # Ex 6 -> create IndividualClient < Client, EnterpriseClient < Client
-# Test client validation
-if true
+# Test IndividualClient
+if false
   puts IndividualClient.new(firstname: "Bob", lastname: "Lennon").valid?
   puts IndividualClient.new(firstname: "B", lastname: "Lennon").valid?
   puts IndividualClient.new(firstname: "Bob", lastname: "L").valid?
@@ -86,6 +86,18 @@ if true
 
   individual_client = IndividualClient.create(firstname: "Bob", lastname: "Lennon")
   puts individual_client
+end
 
-  # Client.all.each { |client| puts client }
+# Test EnterpriseClient
+if false
+  puts EnterpriseClient.new(name: 'a').valid?
+  puts EnterpriseClient.new(name: 'AngulaGo').valid?
+
+  enterprise_client = EnterpriseClient.create(name: 'AngulaGo')
+  puts enterprise_client
+end
+
+# Test polymorphism
+if false
+  puts Client.all
 end
