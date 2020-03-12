@@ -90,11 +90,11 @@ end
 
 # Test EnterpriseClient
 if false
-  puts EnterpriseClient.new(name: 'a').valid?
-  puts EnterpriseClient.new(name: 'AngulaGo').valid?
+  puts CompanyClient.new(name: 'a').valid?
+  puts CompanyClient.new(name: 'AngulaGo').valid?
 
-  enterprise_client = EnterpriseClient.create(name: 'AngulaGo')
-  puts enterprise_client
+  company_client = CompanyClient.create(name: 'AngulaGo')
+  puts company_client
 end
 
 # Test polymorphism

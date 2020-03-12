@@ -1,4 +1,4 @@
-class EnterpriseClient < Client
+class CompanyClient < Client
   validates :name,
             length: {
                 minimum: 2,
