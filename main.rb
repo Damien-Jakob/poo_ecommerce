@@ -62,7 +62,7 @@ if false
 end
 
 # Ex 5
-if true
+if false
   client = Client.last
   order = client.orders.new
   order.order_items.new(quantity: 1, product: Product.first)
@@ -73,4 +73,19 @@ if true
   puts order.total_price
 
   puts order.order_items.new(quantity: 1, product: Product.first, item_price: 2).valid?
+end
+
+# Ex 6 -> create IndividualClient < Client, EnterpriseClient < Client
+# Test client validation
+if true
+  puts IndividualClient.new(firstname: "Bob", lastname: "Lennon").valid?
+  puts IndividualClient.new(firstname: "B", lastname: "Lennon").valid?
+  puts IndividualClient.new(firstname: "Bob", lastname: "L").valid?
+  puts IndividualClient.new(lastname: "Lennon").valid?
+  puts IndividualClient.new(firstname: "Bob").valid?
+
+  individual_client = IndividualClient.create(firstname: "Bob", lastname: "Lennon")
+  puts individual_client
+
+  # Client.all.each { |client| puts client }
 end
