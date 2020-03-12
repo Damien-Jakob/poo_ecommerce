@@ -117,3 +117,5 @@ if false
   puts supplier.categories
   puts supplier.categories.count
 end
+
+# Ex 8
