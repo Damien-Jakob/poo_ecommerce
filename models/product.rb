@@ -4,8 +4,17 @@ class Product < ActiveRecord::Base
   has_many :order_items
   has_many :comments, as: :subject
 
-  validates :supplier,
+  validates :category, :supplier,
             presence: true
+  validates :name,
+            length: {
+                minimum: 2,
+                maximum: 50,
+            }
+  validates :price,
+            numericality: {
+                greater_than: 0,
+            }
 
   scope :cheap, -> (max_price = 0.20) { where('price <= ?', max_price) }
 
