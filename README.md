@@ -4,4 +4,6 @@
 # Rake
     rake --tasks
 
-    rake db:new_migration name=create_client_type
+    rake db:new_migration name=create_client
+    
+# use gem

@@ -15,10 +15,15 @@ class Product < ActiveRecord::Base
             numericality: {
                 greater_than: 0,
             }
+  validates :stock,
+            numericality: {
+                greater_than: 0,
+                only_integer: true,
+            }
 
   scope :cheap, -> (max_price = 0.20) { where('price <= ?', max_price) }
 
   def to_s
-    "#{name}"
+    name
   end
 end

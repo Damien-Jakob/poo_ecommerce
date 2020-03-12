@@ -132,3 +132,23 @@ if false
   supplier.save
   puts supplier.comments
 end
+
+# Ex 9
+if true
+  product = Product.new(
+      name: "Hot Dog",
+      price: 1.55,
+      stock: 6,
+      category: Category.last,
+      supplier: Supplier.last,
+      )
+  product.save
+  puts product.errors.full_messages
+
+  ActiveRecord::Base.observers << :product_observer
+  ActiveRecord::Base.instantiate_observers
+
+  product.stock = 4
+  product.save
+
+end
