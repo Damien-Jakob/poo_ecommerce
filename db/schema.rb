@@ -12,26 +12,26 @@
 
 ActiveRecord::Schema.define(version: 2020_03_12_093307) do
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "description"
   end
 
-  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "firstname", limit: 50
     t.string "lastname", limit: 50
     t.string "type", limit: 50
     t.string "name", limit: 50
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "content"
     t.string "subject_type"
     t.bigint "subject_id"
     t.index ["subject_type", "subject_id"], name: "index_comments_on_subject_type_and_subject_id"
   end
 
-  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "quantity"
     t.decimal "item_price", precision: 10, scale: 2
     t.bigint "order_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_093307) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "shipped_at"
     t.string "status", limit: 20
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_093307) do
     t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
     t.decimal "price", precision: 10, scale: 2
     t.string "description"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_093307) do
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
-  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50, null: false
   end
 
