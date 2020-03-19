@@ -177,6 +177,7 @@ end
 # TODO
 if true
   puts "Exercise 2-3 :"
+  puts Client.orderless.all
 end
 
 # 4
