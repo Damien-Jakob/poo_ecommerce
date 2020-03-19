@@ -37,5 +37,9 @@ if true
   order.order_items.new(product: ski, quantity: 1)
   order.order_items.new(product: batons, quantity: 3)
   order.save
+  order = pascal.orders.new
+  order.order_items.new(product: snow, quantity: 100)
+  order.order_items.new(product: batons, quantity: 2)
+  order.save
 
 end
