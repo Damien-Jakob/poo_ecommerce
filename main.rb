@@ -134,7 +134,7 @@ if false
 end
 
 # Ex 9
-if true
+if false
   ActiveRecord::Base.observers << :product_observer
   ActiveRecord::Base.instantiate_observers
 
@@ -155,5 +155,10 @@ if true
 
   product.stock -= 4
   product.save
+end
 
+# Part 2
+# 1
+if true
+  puts Order.all.sort_by(&:total_price)
 end
