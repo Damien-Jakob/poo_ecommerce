@@ -108,7 +108,7 @@ if false
   product1 = supplier.products.new(name: "Pantalons", price: 43.35, description: "Ne les perd pas.")
   product1.category = Category.find_by name: 'Habits'
   product2 = supplier.products.new(name: "Echelle", price: 82.50, description: "Attention : fragile")
-  product2.category = Category.find_by name:'Bricolage'
+  product2.category = Category.find_by name: 'Bricolage'
 
   supplier.save
 
@@ -144,7 +144,7 @@ if false
       stock: 6,
       category: Category.last,
       supplier: Supplier.last,
-      )
+  )
   product.save
 
   product.stock = 4
@@ -159,6 +159,36 @@ end
 
 # Part 2
 # 1
+# TODO find better solution, put in model
 if true
-  puts Order.all.sort_by(&:total_price)
+  puts "Exercise 2-1 :"
+  puts Order.all.sort_by(&:total_price).last
+  puts Order.most_expensive.last
 end
+
+
+# 2
+# TODO
+if true
+  puts "Exercise 2-2 :"
+end
+
+# 3
+# TODO
+if true
+  puts "Exercise 2-3 :"
+end
+
+# 4
+if true
+  puts "Exercise 2-4 :"
+  puts "* Current orders"
+  puts Order.created_between(Time.new(2000), Time.new(2040))
+  puts "* Futur orders"
+  puts Order.created_between(Time.now, Time.new(2050))
+  puts "* Current orders (default end_time)"
+  puts Order.created_between(Time.new(1990))
+  puts "* Current orders (default start_time, end_time)"
+  puts Order.created_between
+end
+

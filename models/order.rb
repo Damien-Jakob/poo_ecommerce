@@ -5,6 +5,10 @@ class Order < ActiveRecord::Base
   # validate :contain_item
   validates_associated :order_items
 
+  # TODO implementation
+  scope :most_expensive, -> { where('true')}
+  scope :created_between, -> (start_time = 0, end_time = Time.now) { where('created_at BETWEEN ? AND ?', start_time, end_time)}
+
   belongs_to :client
   has_many :order_items, inverse_of: :order
   has_many :products, through: :order_items
@@ -14,7 +18,7 @@ class Order < ActiveRecord::Base
   end
 
   def to_s
-    "order of #{client} at #{created_at}"
+    "order of #{client} at #{created_at} (#{total_price})"
   end
 
   protected
