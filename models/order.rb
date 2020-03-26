@@ -5,13 +5,20 @@ class Order < ActiveRecord::Base
   # validate :contain_item
   validates_associated :order_items
 
+  # ex 2-1
   # TODO implementation
+  # Better, because less resource intensive
   scope :most_expensive, -> { where('true')}
-  scope :created_between, -> (start_time = 0, end_time = Time.now) { where('created_at BETWEEN ? AND ?', start_time, end_time)}
+  # ex 2-4
+  scope :created_between, -> (starts_at, ends_at = Time.now) { where(created_at: starts_at..ends_at)}
 
   belongs_to :client
   has_many :order_items, inverse_of: :order
   has_many :products, through: :order_items
+
+  def self.find_most_expensive
+    self.all.max_by(&:total_price)
+  end
 
   def total_price
     self.order_items.sum(&:price)

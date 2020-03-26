@@ -158,38 +158,40 @@ if false
 end
 
 # Part 2
-# 1
-# TODO find better solution, put in model
+# 1 Afficher la commande la plus cher
+# TODO finish implement better solution in order
 if true
   puts "Exercise 2-1 :"
-  puts Order.all.sort_by(&:total_price).last
-  puts Order.most_expensive.last
+  # puts Order.all.sort_by(&:total_price).last
+  puts Order.find_most_expensive
+  # still in dev
+  # puts Order.most_expensive.last
 end
 
 
-# 2
-# TODO
+# 2 Afficher les catégories qui n'ont jamais été commandées
+# TODO find cleaner implementation
 if true
   puts "Exercise 2-2 :"
+  puts Category.orderless.all
 end
 
-# 3
-# TODO
+# 3 Supprimer les clients n'ayant fait aucune commande
+# TODO find cleaner implementation
 if true
   puts "Exercise 2-3 :"
-  puts Client.orderless.all
+  puts Client.orderless.destroy_all
+  puts Client.orderless.count
 end
 
-# 4
+# 4 Déterminer s'il y a des commandes ou non entre deux dates données
 if true
   puts "Exercise 2-4 :"
   puts "* Current orders"
   puts Order.created_between(Time.new(2000), Time.new(2040))
-  puts "* Futur orders"
+  puts "* Future orders"
   puts Order.created_between(Time.now, Time.new(2050))
   puts "* Current orders (default end_time)"
   puts Order.created_between(Time.new(1990))
-  puts "* Current orders (default start_time, end_time)"
-  puts Order.created_between
 end
 

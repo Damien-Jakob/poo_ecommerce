@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :supplier
   has_many :order_items
+  has_many :orders, through: :order_items
   has_many :comments, as: :subject
 
   validates :category, :supplier,
@@ -22,6 +23,7 @@ class Product < ActiveRecord::Base
             }
 
   scope :cheap, -> (max_price = 0.20) { where('price <= ?', max_price) }
+  scope :ordered, -> { left_joins(:order_items).where.not(order_items: {id: nil}) }
 
   def to_s
     name
