@@ -13,4 +13,17 @@
 
     rake db:new_migration name=create_client
     
-# use gem
+# Observer
+Add this line to your application's Gemfile:
+
+    gem 'rails-observers'
+
+And then execute: 
+
+    $ bundle
+
+Add 
+
+    require 'rails/observers/activerecord/active_record' 
+    
+to the observer file
